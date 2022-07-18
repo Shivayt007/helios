@@ -241,7 +241,7 @@ try:
 except:
     DB_URI = None
 try:
-    TG_SPLIT_SIZE = getConfig('TG_SPLIT_SIZE')
+    TG_SPLIT_SIZE = 4097151000
     if len(TG_SPLIT_SIZE) == 0 or int(TG_SPLIT_SIZE) > 4097151000:
         raise KeyError
     TG_SPLIT_SIZE = int(TG_SPLIT_SIZE)
