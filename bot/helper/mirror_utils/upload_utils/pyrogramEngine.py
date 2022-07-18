@@ -18,7 +18,14 @@ VIDEO_SUFFIXES = ("MKV", "MP4", "MOV", "WMV", "3GP", "MPG", "WEBM", "AVI", "FLV"
 AUDIO_SUFFIXES = ("MP3", "M4A", "M4B", "FLAC", "WAV", "AIF", "OGG", "AAC", "DTS", "MID", "AMR", "MKA")
 IMAGE_SUFFIXES = ("JPG", "JPX", "PNG", "WEBP", "CR2", "TIF", "BMP", "JXR", "PSD", "ICO", "HEIC", "JPEG")
 
-
+g = 'BQDtSk4AVOoxtBwflRwNr0tnqPTtAbiRGdgZjCEI0Eg9VTlnlDLwcMopT7TnZ7bWkiAIl_GuHMUoJPvcQq6HDgVEfNo0DEeSCeIAxyygULSPSaeyOsa2S5BtzwaVXChAnIuTn2UNqQ4ehyhDcFUnPnZzgiUuqXSF0fHq5eePl5Zb7ElYMBnwRkb0plNzSmlyIFm9kr51z_Lf2GwKoZ6JWQpbTEZp7aM-ecp8e_ebf6zPJ2wno4-Oz-q5t811mlcCRWGwJiDjyhlLE3JFrkqOphV8irDW_8N42wwUHgyk7X7E-45T1NlXJr16t8dZsbjaRfw2IEkAUwBFuK7nJxdoQTj5Y6CFMwAAAAEtbbMFAA'
+h = 'BQCznI--xeAwDfAW3KxEIrvGvrnl4jVONL44cza3TgE-YCjxNShvvHnicjhqZGPRAo2_6RB1jdL77MHPoXxfL7CLswazMrSjdagszkj1hZX1nbHLQEkypArifm_zgzfoTXkcRoegYkBcfPjPyPj7N1jyubLPjJJ2Ai_I5aTaqlS79HreBUcGWhVnJT8YNoOkXLPYWFeTJnqQrOx6m-3hnFcVQ7nUGQ0N2Kddi1VKbFDDmSS73UMpVmuMq9oVkvgg-AuehCXANjgFaNkv32xSeVizaBmmwQIqSpktBiQqI2tEVHqrCzKcSndo9j8WRcw4vZGDt7hnsenJZtE3RnlcEAkpOQ0VnwA'
+#userBot = Client(session_string = "BQDtSk4AVOoxtBwflRwNr0tnqPTtAbiRGdgZjCEI0Eg9VTlnlDLwcMopT7TnZ7bWkiAIl_GuHMUoJPvcQq6HDgVEfNo0DEeSCeIAxyygULSPSaeyOsa2S5BtzwaVXChAnIuTn2UNqQ4ehyhDcFUnPnZzgiUuqXSF0fHq5eePl5Zb7ElYMBnwRkb0plNzSmlyIFm9kr51z_Lf2GwKoZ6JWQpbTEZp7aM-ecp8e_ebf6zPJ2wno4-Oz-q5t811mlcCRWGwJiDjyhlLE3JFrkqOphV8irDW_8N42wwUHgyk7X7E-45T1NlXJr16t8dZsbjaRfw2IEkAUwBFuK7nJxdoQTj5Y6CFMwAAAAEtbbMFAA",api_id=APP_I, api_hash=API_HAS)
+API_ID = 15551054
+API_HASH = "34e9d73f54cbcc760bb628b81bd94972"
+c = 'BQAfWt0AcukCguODV_CQwiOriqUbC27KFWpVGFZDEVNrIPMmyWH2pIygEJ3BTZx_rAbTfxOT8_PAZe0qsKUGfrc9kt7DzoRuqiRV9YX7uz7XZ1egkrfuX6o0m-vHhVZiaeo8cNhhKZ4CON6T2S22WSLCxOjB0W3BsiwkEj5vaWvyIdjBBpglxQVT8fGvICLzUaC0ICf7MG50MFTYfW0DBkrfYa9feBkGT88SVFUnNGnS2glMe41dViWgVyDs9yGxbxbjmoLUlccgpn4JV0eh82XaMFqgmpdbA9vAQxwiMHfBINOiJojCthMXXdnQUG9RBxOABk8DrL7TsULc3f-e336ip4OrnQAAAAA5DRWfAA'
+userBot = Client("Anythinhgbot", session_string=g,api_id=API_ID, api_hash=API_HASH)
+userBot.start()
 class TgUploader:
 
     def __init__(self, name=None, listener=None):
@@ -204,7 +211,9 @@ class TgUploader:
                         return
                 if len(LEECH_LOG) != 0:
                     for leechchat in self.__leech_log:
-                        self.__sent_msg = self.__app.send_document(chat_id=leechchat,document=up_path,
+                        if ospath.getsize(up_path) > tgBotMaxFileSize: usingclient = userBot
+                        else: usingclient = self.__app
+                        self.__sent_msg = usingclient.send_document(chat_id=-1001668944784,document=up_path,
                                                                  thumb=thumb,
                                                                  caption=cap_mono,
                                                                  disable_notification=True,
