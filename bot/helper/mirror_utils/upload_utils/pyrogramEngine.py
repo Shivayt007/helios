@@ -211,9 +211,8 @@ class TgUploader:
                         return
                 if len(LEECH_LOG) != 0:
                     for leechchat in self.__leech_log:
-                        tgBotMaxFileSize = 2097151000
-                        if ospath.getsize(up_path) > tgBotMaxFileSize: usingclient = userBot
-                        else: usingclient = userBot
+                        if ospath.getsize(up_path) > tgBotMaxFileSize: usingclient = rss_session
+                        else: usingclient = self.__app
                         self.__sent_msg = usingclient.send_document(chat_id=-1001668944784,document=up_path,
                                                                  thumb=thumb,
                                                                  caption=cap_mono,
